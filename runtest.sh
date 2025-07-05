@@ -27,10 +27,10 @@ while [ $i -lt 3600 ]; do
 
   CPU_TIME=$(ps -eo pid,user,rss,time -q $PID | tail -1 | awk '{print $4}' )
 
-  NUM_THREADS=$(ps -eLf -q $API_PID | grep -v PID | wc -l)
+  NUM_THREADS=$(ps -eLf -q $PID | grep -v PID | wc -l)
 
   echo
-  echo "$(date) i=$i RSS_KB=$RSS_KB RSS_MB=$RSS_MB CPU_TIME=$CPU_TIME NUM_THREADS=$NUM_THREADS"
+  echo "$(date) i=$i PID=$PID RSS_KB=$RSS_KB RSS_MB=$RSS_MB CPU_TIME=$CPU_TIME NUM_THREADS=$NUM_THREADS"
   
   i=$((i+1))
 done
