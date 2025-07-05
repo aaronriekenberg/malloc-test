@@ -5,7 +5,7 @@
 #include <pthread.h>
 
 #define NUM_THREADS (400)
-#define MAX_ALLOCATION_SIZE_BYTES (1 * 1024 * 1024)
+#define MAX_ALLOCATION_SIZE_BYTES (120 * 1024)
 #define PAGE_SIZE_BYTES (4096)
 
 void* runThread(void* param) {
