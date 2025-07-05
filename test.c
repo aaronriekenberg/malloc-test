@@ -5,7 +5,8 @@
 #include <pthread.h>
 
 #define NUM_THREADS (200)
-#define MAX_ALLOCATION_SIZE_BYTES (100 * 1024)
+#define MAX_ALLOCATION_SIZE_BYTES (1 * 1024 * 1024)
+#define PAGE_SIZE_BYTES (4096)
 
 void* runThread(void* param) {
   int i;
@@ -24,7 +25,7 @@ void* runThread(void* param) {
     }
     for (pageNumber = 0;
          pageNumber < bytes;
-         pageNumber += 4096) {
+         pageNumber += PAGE_SIZE_BYTES) {
       *((unsigned char*)pData + pageNumber) = 0;
     }
     /*memset(pData, 0, ALLOCATION_SIZE_BYTES);*/
