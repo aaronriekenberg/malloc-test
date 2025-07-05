@@ -4,13 +4,13 @@
 #include <string.h>
 #include <pthread.h>
 
-#define NUM_THREADS (200)
+#define NUM_THREADS (400)
 #define MAX_ALLOCATION_SIZE_BYTES (1 * 1024 * 1024)
 #define PAGE_SIZE_BYTES (4096)
 
 void* runThread(void* param) {
   int i;
-  int pageNumber;
+  int pageBytes;
   void* pData;
 
   while (true) {
@@ -23,10 +23,11 @@ void* runThread(void* param) {
         printf("malloc returned NULL\n");
         abort();
     }
-    for (pageNumber = 0;
-         pageNumber < bytes;
-         pageNumber += PAGE_SIZE_BYTES) {
-      *((unsigned char*)pData + pageNumber) = 0;
+    for (pageBytes = 0;
+         pageBytes < bytes;
+         pageBytes += PAGE_SIZE_BYTES) {
+      unsigned char* pByteArray = pData;
+      pByteArray[pageBytes] = 0;
     }
     /*memset(pData, 0, ALLOCATION_SIZE_BYTES);*/
     free(pData);
