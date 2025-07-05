@@ -16,7 +16,7 @@ sleep 1
 
 i=0
 
-while [ i < 3600 ]; do
+while [ $i -lt 3600 ]; do
   sleep 1
 
   echo "$(date) i = $i"
