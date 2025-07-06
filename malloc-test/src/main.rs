@@ -3,6 +3,7 @@ use std::thread;
 
 static NUM_PRODUCER_CONSUMER_PAIRS: usize = 200;
 static CHANNEL_BUFFER_SIZE: usize = 1;
+static MESSGE_TEXT_LENGTH: usize = 8 * 1024;
 static PRINT_RECEIVED_MESSAGES: bool = false;
 
 #[derive(Debug)]
@@ -10,10 +11,21 @@ struct Message {
     text: String,
 }
 
+fn build_message() -> Message {
+    let mut s = String::with_capacity(MESSGE_TEXT_LENGTH);
+
+    for _i in 0..MESSGE_TEXT_LENGTH {
+        s.push('X');
+    }
+
+    Message { text: s }
+}
+
 fn main() {
     println!("begin main");
     println!("NUM_PRODUCER_CONSUMER_PAIRS = {NUM_PRODUCER_CONSUMER_PAIRS}");
     println!("CHANNEL_BUFFER_SIZE = {CHANNEL_BUFFER_SIZE}");
+    println!("MESSGE_TEXT_LENGTH = {MESSGE_TEXT_LENGTH}");
     println!("PRINT_RECEIVED_MESSAGES = {PRINT_RECEIVED_MESSAGES}");
 
     let mut children = Vec::with_capacity(NUM_PRODUCER_CONSUMER_PAIRS * 2);
@@ -25,13 +37,8 @@ fn main() {
         // Each thread will send its id via the channel
         let sender = thread::spawn(move || {
             println!("start sender id = {id}");
-            let mut message_number: u64 = 0;
             loop {
-                tx.send(Message {
-                    text: format!("hello message {message_number}"),
-                })
-                .unwrap();
-                message_number += 1;
+                tx.send(build_message()).unwrap();
             }
         });
 
