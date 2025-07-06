@@ -2,8 +2,8 @@ use std::sync::mpsc;
 use std::thread;
 
 static NUM_PRODUCER_CONSUMER_PAIRS: usize = 200;
-static CHANNEL_BUFFER_SIZE: usize = 1;
-static MESSGE_TEXT_LENGTH: usize = 8 * 1024;
+static CHANNEL_BUFFER_SIZE: usize = 1_000;
+static MESSGE_TEXT_LENGTH: usize = 100 * 1024;
 static PRINT_RECEIVED_MESSAGES: bool = false;
 
 #[derive(Debug)]
