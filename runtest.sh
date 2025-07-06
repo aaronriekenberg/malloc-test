@@ -2,14 +2,16 @@
 
 echo "begin runtest.sh"
 
-echo "cc --version"
-cc --version
+echo "rustup update"
+rustup update
 
-echo "cc -pthread test.c"
-cc -pthread test.c
+cd malloc-test
+echo "$(date) before cargo build"
+cargo build --release
+echo "$(date) after cargo build"
 
-echo "run ./a.out"
-./a.out &
+echo "run ./target/release/malloc-test"
+./target/release/malloc-test &
 
 PID=$!
 sleep 1
