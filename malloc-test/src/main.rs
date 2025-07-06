@@ -3,8 +3,8 @@ use std::thread;
 
 static NUM_PRODUCER_CONSUMER_PAIRS: usize = 16;
 static CHANNEL_BUFFER_SIZE: usize = 10;
-static SMALL_MESSAGE_TEXT_LENGTH: usize = 128;
-static MEDIUM_MESSAGE_TEXT_LENGTH: usize = 1 * 1024;
+// static SMALL_MESSAGE_TEXT_LENGTH: usize = 128;
+// static MEDIUM_MESSAGE_TEXT_LENGTH: usize = 1 * 1024;
 static LARGE_MESSAGE_TEXT_LENGTH: usize = 50 * 1024;
 static PRINT_RECEIVED_MESSAGES: bool = false;
 
@@ -27,8 +27,8 @@ fn main() {
     println!("begin main");
     println!("NUM_PRODUCER_CONSUMER_PAIRS = {NUM_PRODUCER_CONSUMER_PAIRS}");
     println!("CHANNEL_BUFFER_SIZE = {CHANNEL_BUFFER_SIZE}");
-    println!("SMALL_MESSAGE_TEXT_LENGTH = {SMALL_MESSAGE_TEXT_LENGTH}");
-    println!("MEDIUM_MESSAGE_TEXT_LENGTH = {MEDIUM_MESSAGE_TEXT_LENGTH}");
+    // println!("SMALL_MESSAGE_TEXT_LENGTH = {SMALL_MESSAGE_TEXT_LENGTH}");
+    // println!("MEDIUM_MESSAGE_TEXT_LENGTH = {MEDIUM_MESSAGE_TEXT_LENGTH}");
     println!("LARGE_MESSAGE_TEXT_LENGTH = {LARGE_MESSAGE_TEXT_LENGTH}");
     println!("PRINT_RECEIVED_MESSAGES = {PRINT_RECEIVED_MESSAGES}");
 
@@ -42,8 +42,8 @@ fn main() {
         let sender = thread::spawn(move || {
             println!("start sender id = {id}");
             loop {
-                tx.send(build_message(SMALL_MESSAGE_TEXT_LENGTH)).unwrap();
-                tx.send(build_message(MEDIUM_MESSAGE_TEXT_LENGTH)).unwrap();
+                // tx.send(build_message(SMALL_MESSAGE_TEXT_LENGTH)).unwrap();
+                // tx.send(build_message(MEDIUM_MESSAGE_TEXT_LENGTH)).unwrap();
                 tx.send(build_message(LARGE_MESSAGE_TEXT_LENGTH)).unwrap();
             }
         });
