@@ -1,7 +1,7 @@
 use std::sync::mpsc;
 use std::thread;
 
-static NUM_PRODUCER_CONSUMER_PAIRS: usize = 16;
+static NUM_PRODUCER_CONSUMER_PAIRS: usize = 4;
 static CHANNEL_BUFFER_SIZE: usize = 10;
 // static SMALL_MESSAGE_TEXT_LENGTH: usize = 128;
 // static MEDIUM_MESSAGE_TEXT_LENGTH: usize = 1 * 1024;
